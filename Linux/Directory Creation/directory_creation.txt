@@ -1,0 +1,49 @@
+//to make directory
+
+#mkdir dir1 --> making directory dir1
+#mkdir file10 --> making directory directory file10
+
+#touch .file10 --> creating an empty hidden file file10
+#ls -a --> checks for all files and directories including hidden
+#ls -al --> lists details of all hidden as well as visible files
+#mkdir -p dirc/dird/dire --> making parent-child directory
+
+//printing working directory
+#pwd --> print working directory
+
+//changing directories
+#cd dirc --> changing directory to dirc
+#cd dird 
+#cd dire
+#cd . --> changing to same working directory
+#cd .. --> changing to its parent directory
+#cd ..
+#cd ..
+#cd dirc/dird/dire --> switching to directories in one go
+#cd ../../.. --> going back to parent directory in one go
+
+//copying files and directores or content of files to another file
+#cp file1 file2 --> copy content of file1 into file2
+press y to confirm or append -y to avoid confirmation prompt eg. cp file1 file2 -y
+
+//moving or renaming directories and files.
+#mv dir1 dirx --> moving directory dir1 inside directory dirx
+#mv diry myfolder --> renaming folder diry to myfolder
+#mv file1 .file1 --> converting file1 into hidden file
+
+//deleting files and directories
+#rmdir dirx --> remove empty directory(dirx)
+#rm -rf file3 --> forcefully remove all kind of files and directories
+#rmdir -p dirc/dird/dire --> delete parent and its subdirectories
+#rm -rf dirx --> forcefully remove all kind of files and directories
+#rm -rp diry --> remove non-empty directories including parent and subdirectories
+#rm -r file10 -y --> remove empty directories without any confirmation.
+#rmdir -pv dirz --> remove parent & subdirectories along with the verbose.
+
+
+//less, more, head, tail
+#less file55 less allows us to switch between them.(press q to quit)
+#head file55 will list first 10 lines of the output
+#tail file55 will list last 10 lines of the output
+#more file55 allows us to view them as a single file separated by lines
+

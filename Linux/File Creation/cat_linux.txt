@@ -1,0 +1,71 @@
+$ec2-user --> to login in to ec2 user linux
+
+
+
+$clear --> clear the screen
+
+
+
+
+$sudo su --> offers root user privilege
+
+
+//cat is mainly used for concatenation
+
+#cat > file1
+write something
+here!
+press ctrl+d to quit
+
+#cat > file2
+write something
+again!
+press ctrl+d to quit
+
+#ls
+file1 file2
+
+#cat file1
+write something
+here!
+
+#cat file2
+write something
+again!
+
+#cat >>file1
+write more
+ctrl+d to quit
+
+#cat file1
+write something
+here!
+write more
+
+#cat file1 file2 > mergedfile
+
+#ls
+file1 file2 mergedfile
+
+#cat mergedfile
+write something
+here!
+write more
+write something
+again!
+
+#cat file2 > file1
+
+#cat file1
+write something
+again!
+
+#tac file1
+again!
+write something
+
+
+
+
+
+

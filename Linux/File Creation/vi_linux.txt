@@ -1,0 +1,8 @@
+vi/vim-> editor
+
+#vi file5 --> will open a separate editor
+
+press i for INSERT
+now click esc key
+press shift + :
+press wq for save and quit

@@ -1,0 +1,23 @@
+#useradd imtiyaz --> add a user
+#cat /etc/passwd --> to check user
+#groupadd techguftugu --> add a group
+#cat /etc/group --> check group
+#useradd nadeem
+#useradd mustaq
+#gpasswd -a imtiyaz techguftugu --> add single user to a group
+#gpasswd -M nadeem, mustaq techguftugu --> add multiple users to a group
+#ln -s file1 softline1 --> create softlink or shortcut of a file. on deleting main file softlink is automatically deleted.
+#ln file1 hardlink1 --> create hardlink or backup. 
+// hardlink and original file are sync, any update in both files, changes will be reflected in both. on deleting original file, backup doesnot get deleted
+
+#tar -cvf dirx.tar dirx --> create a tar file of directory dirx // archiver to combine multiple files into one
+#gzip dirx.tar --> compress tar file // compression tool to reduce size of file
+#gunzip dirx.tar.gz --> decompress zipped tar file
+#tar -xvf dirx.tar --> 
+#wget https://packages.chef.io/files/stable/chef-workstation/21.10.640/el/8/chef-workstation-21.10.640-1.el8.x86_64.rpm --> download file or package from internet or server or network
+//it is non-interactive network downloader
+#which chef --> to check if chef is installed, results in its location.
+
+-cvf --> create verbose forcefully
+-xvf --> extract verbose forcefully 
+tar --> tape archive

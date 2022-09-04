@@ -1,0 +1,8 @@
+touch -> changing timestamp
+
+#touch file3 file4 file5 -> will create these empty files
+#touch file1 -> will change timestamp for already created file1
+#stat file1 -> will check timestamp of file1 like access, modify and change time 
+#touch -a file1 -> will change timestamp for access only
+#touch -m file2 -> will change timestamp for modify only
+change time -> is for change in metadata of a file i.e. all timestamps

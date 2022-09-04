@@ -1,0 +1,58 @@
+#git branch  --> to see list of available branches
+#git branch branch1 --> create a new branch branch1
+#git branch
+O/P --> *master    //* represents current branch  
+#git checkout branch1 //switch to other branch
+do whatever changes u need to
+#git checkout master  // switch to master branch
+#git branch -d branch1 //delete branch1 
+#git branch -D branch 
+
+
+
+note: we cant merge branches of different repositories. Pulling mechanism to merge branches
+//conflict may occur when merging brancges. we need to resolve it then add and commit
+//we need not merge again explictly in case of conflict as it gets merged as soon as conflict is resolved
+case of non-conflict : file1 : i am trainer and my name is imtiyaz
+                       file2: i am trainer and my name is ali
+case of conflict :     file1 : my name is imtiyaz
+                       file2: my name is ali
+#git merge branch1 //merge branch1 to master
+#git log
+#git push origin master
+
+
+
+#git stash  //stash an item
+#git stash list // to see stashed items list
+#git stash apply stash@{1} // to apply stashed items
+then u can add and commit
+#git stash clear  //clear the stash items
+
+Note: We stash only untracked files or works
+
+
+
+RESET: a powerful command to undo local changes to the state of a git repo
+#git reset demofile // to reset staging area 
+#git reset . //soft reset only removes from staging area
+#git reset --hard //hard reset, undo local changes plus staging area
+
+Git revert: helps to undo an existing commit, does not delete any data in the process 
+            rather creates a new commit with the included dfiles reverted to their previous state.
+           so your version control history moves forward while the state of your file moves backward
+#git revert <commid_id>
+
+#git clean -n (dry run to remove untracked files)
+#git clean -f (forcefully remove untracked changes)
+
+TAGS: allows giving meaningful names to a specific version in the repository
+
+#git tag -a important -m "message" <commit_id> // to apply tag to a specific version or commit
+#git show <important> // to see particular commit content
+#git tag // to  see list of tags
+#git tag -d important // to delete a particular tag
+
+
+GitHub clone creats a local repo in local m/c with th same nane as that of remote repository
+#git clone https://github.com/imtiyaz786/my_remoterepo.git  // to clone a remote repository in local system as local repo

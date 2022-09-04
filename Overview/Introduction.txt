@@ -1,0 +1,16 @@
+Why organizantion needs DevOPs?
+
+Fast Delivery
+Higher Quality
+Less capex + opex
+Reduced outages
+
+
+SDLC
+
+
+Development Team                             Operation Team
+Development (GitHub, Maven)                  Deploy (Chef, Ansible, Puppet, Docker, Kubernetes)
+Build (Maven, Jenkins)                       Maintenance
+Test (Selenium)                              Monitoring (Nagios, AWS Cloudwatch, etc)
+QA

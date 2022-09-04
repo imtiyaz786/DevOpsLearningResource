@@ -1,0 +1,11 @@
+# nano file 6-> will open a editor
+write something and then press ctrl+x
+now press shift+y and then enter
+file will be saved.
+
+# ls -l or ll
+lists all files with their details
+
+#ls -a
+lists hidden files along with all saved files
+#history -> lists all used commands

@@ -1,0 +1,53 @@
+yum -> yellowdog updater modified
+
+#yum update -y --> update all packages that are pending
+
+#yum install tree -y --> install package related to tree
+
+
+#tree --> displays tree like structure
+
+O/P->
+├── dir1
+│   └── dir2
+│       └── dir3
+├── dira
+├── dirb
+├── dirc
+├── file1
+├── file2
+├── file3
+├── file4
+└── file55
+
+#grep root /etc/passwd --> look for word 'root' in passwd file of etc folder
+# less /etc/passwd -->
+# more /etc/passwd -->
+#sort file1 --> will sort content in file1 in ascending order or alphabetically or numberically.
+#hostname -> ip-172-31-14-23.ap-south-1.compute.internal (DNS Name)
+#hostname -i -> 172.31.14.23 (IP)
+#ifconfig -> details abt ip, dns, ethernet, etc.
+#cat /etc/os-release --> version of os
+#cat /etc/os-rel* --> version of os (absolute path)
+#cat /etc/*rel* --> version of os
+#yum install httpd -y --> install apache server package
+#service httpd status --> will show status of apache server
+#service httpd start --> will start apache server
+#service httpd stop --> will stop apache server
+#yum update httpd -y --> update apache server if it is not
+#yum remove httpd -y --> remove or delete apache server
+#yum list installed ->list all sofware packages installed
+#which tree -> /bin/tree -> will check and result software package path
+#which httpd -> /sbin/httpd 
+#which chef -> no chef found -> will check if not available result in no
+#which git -> no git found
+#echo "hello" -> hello 
+#echo "hello" >testfile --> print hello in testfile
+#echo "welcome to my tutorial" >> testfile --> apend the text in testfile
+#echo >testfile --> empty the testfile
+#chkconfig httpd on --> apache server will turn on automatically on restarting the system
+#chkconfig httpd off --> closes the auto start option
+#whoami -> results in user
+O/p --> root
+
+

@@ -1,0 +1,21 @@
+#chmod 777 dir1 //change mode/permission of directory <rwx><rwx><rwx>
+#chmod 700 dir1 // change mode of file <rwx><___><___>
+#chmod 755 file1 //change mode of file <rwx><r_x><r_x>
+#chmod u=r,g=rw,o=x file1 // giving read permission to user, giving read/write permission to group, giving run permission to others
+#chmod u+W,g-w,o+r file1  // adding write permission to user, removing write permission from group, adding read permission to others
+#chown imtiyaz dir1 //changing owner of dir1 to imtiyaz 
+#chgrp linux file1 //changing group of file1 to linux
+
+
+
+drwxr-xr-x 2 root root 6 Aug 25 14:41 dir1
+<directory><permission for user/owner><permission for group><permission for others><symbolic link for directory><owner><group><Date and Time><directory name>
+-rw-r--r-- 1 root root 0 Aug 25 14:41 file1
+<file><permission for user/owner><permission for group><permission for others><symbolic link for file><owner><group><Date and Time><file name>
+
+
+Access Modes/Permission ->
+r = read --> 4 //display content/list content
+w = write --> 2 //modify/create or remove
+x = execute/run --> 1 //execute file/enter directory
+
