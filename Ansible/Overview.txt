@@ -1,0 +1,59 @@
+What is Ansible?
+
+#Configuration Management Tool(push-based)
+#Infrastructure as a Code(IAC) tool
+#Uses YAML for scripting which is nothing but key value pair.
+#YAML --> Yet Another Programming Language.
+#It is open-source IT configuration management, deployment and orchestration tool.
+#Aims to provide large productivity gains to a wide variety of automation challenges
+
+History:
+#Developed by Michael Dehaan
+#Ansible project commenced in Feb 2012
+#Acquired by RedHat in 2015
+#Available for RHEL, Debian, CentOS, Oracle Linux, etc.
+
+Features:
+#Can be used whether we work on on-premises or cloud servers.
+#It turns code into infrastructure that means your computing environment has somewhat same attributes
+as your application.
+#Agentless
+#Ansible Tower(UI based configuration management tool)
+#Other tools are: puppet, chef(pull-based), etc.
+
+
+Components:
+#Ansible or Ansible Server
+#Nodes or hosts or clients
+
+
+
+SSH-Connection
+Playbook
+Modules
+
+Advantages:
+#Free to use
+#Consistent, light weight, no constraints regarding the OS or underlying hardware
+#Secure due to agentless capability and open ssh security features.
+#No need of system administration for its installation and uses.
+#Push Mechanism
+
+Disadvantages:
+#Absence of UI
+#Full automation is not achieved
+
+
+Terminologies:
+1.Ansible Server: The m/c where ansible is installed, and all tasks & playbook will run.
+2.Module(predefined commands): Command or set of similiar commands meant to be used on client-side.
+3.Task: Section that consists of a single procedure to be completed.
+4.Role: A way of orgranizing tasks and related files to be later called in a playbook.
+5.Fact: Info fetched from client system from the global variables with the gather-facts operation.
+6.Inventory: File containing data about the ansible client servers.
+7.Play: Execution of a playbook.
+8.Handler: Task which is called only if a notifier is present.
+9.Notifier: Section attributed to a task that  calls a handler if the output is changed
+10.Playbooks: It contains code in YAML format describing tasks to be executed.
+11.Host: Nodes which are automated by Ansible.   
+

@@ -1,0 +1,71 @@
+ANSIBLE(REDHAT):
+	It is a configuration Management Tool that uses push based mechanism.
+
+
+Ansible, Inventory, Host Pattern
+_________________________________
+
+1. Create 3 Ec2 instance for ansible server, node1 and node2.
+2. Go inside ansible server and download ansible package:
+	#wget https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
+	Note: epel stands for extra packages for enterprise linux.
+3. #ls to see the download package
+4. #yum install package name -y to install the downlaoded package
+5. #yum update -y to update everything in the package
+6. #yum install git python python-label python-pip openssl ansible -y to install everything one by one.
+7. # vi /etc/ansible/hosts to open hosts file inside ansible server
+8. paste the private ips of node1 and node2 in a group called demo:
+	[demo]
+	private ip of node1
+	private ip of node2
+9. To enable hosts file we need to uncomment: 
+	#inventory = /etc/ansible/ansible.cfg
+	#sudo-user = root 
+	by updating ansible.cfg file:
+		#vi /etc/ansible/ansible.cfg
+		
+10. Create users in for all three instances name
+	#adduser ansible to create a user
+	#passwd ansible and enter password to set a password for created user.
+11. Repeat option 10 for the all the EC2 instances.
+12. #su - ansible to switch as ansible user.
+13. #visudo to go inside the file for giving user sudo privilege (make sure you enter as root user not as users. #exit to return back to root user)
+	after the line: #root ALL=(ALL)    ALL
+	add:            #ansible ALL=(ALL) NOPASSWD: ALL
+14. Repeat option 13 for other ec2 instances.
+15. Go to ansible server try to install httpd package:
+		#sudo yum install httpd -y 
+16. Establish ssh connection between ansible server and nodes:
+	#vi /etc/ssh/sshd-config to open sshd config file as root user:
+		uncomment #PermitRootLogin, #Password Authentication yes
+		and comment out #Password Authentication no
+	#service sshd restart to ensure sshd-config file has been updated. 
+17. Repeat option 16 for node1 and node2 as well (other two ec2 instances)
+18. #su - ansible to switch to ansible user.
+19. #ssh private_ip of node1 to establish ssh connection and enter password of node1.
+20. Do the same for node2.
+21. Now, whatever changes we make through ansible server will be reflected in nodes as well.
+	Verify it by #touch file1 file2 to create file through ansible server
+	and ls to list the created files through nodes. 
+	However, it is necessary to have ssh connection established between the ansible server and nodes.
+	When the ansible server establishes ssh connection with nodes, it gets inside of the client and do does what is required.
+
+22. We might have noticed, whenever ansible server tries to establish ssh connection with node, it has to enter password everytime
+    so to avoid this:
+	Go to ansible server and create keys by running the command as ansible user.
+	#ssh-keygen to create keys which are hidden
+	#ls -a to check the files.
+	O/P --> .ssh (directory)
+	Go inside .ssh by typing command #cd .ssh
+	O/P --> id_rsa(private key), id_rsa_pub(public key)
+23. Copy the public in all the nodes by typing
+	#ssh-copy-id ansible@private_ip, it will ask for password, enter it.
+24. Verify by going out of .ssh, hence type:
+		#cd ..
+	#ssh private_key --> this time it won't ask for password.
+25. This phonemenon is called Trust relationship between Ansible server and node
+Note: Trust relationship can only be established between: root <-> root, user <-> user
+
+	
+
+

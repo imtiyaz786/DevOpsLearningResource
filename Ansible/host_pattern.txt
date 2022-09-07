@@ -1,0 +1,18 @@
+Host Patterns
+__________________________________________________________
+
+#ansible all --list-hosts
+O/P --> list of private_ip of all nodes of all groups
+#ansible <group_name> --list-hosts
+O/P --> list of private_ip of a particular group
+#ansible <group_name>[index of a node] --list-hosts
+O/P --> private ip of a node at particular index.
+#ansible <group_name>[start_index:end_index] --list-hosts
+O/P --> list of private_ip of nodes in a range 
+#ansible <group_name>[-1] --list-hosts
+O/P --> private_ip of last node
+#ansible <group_name>[-2] --list-hosts
+O/P --> private_ip of second last node
+#ansible <group_name>[start_index:end_index] : <group_name>[start_index:end_index] --list-hosts
+O/P --> lists range of nodes from two different groups each.
+Note: index of nodes start from 0.
