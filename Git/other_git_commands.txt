@@ -1,0 +1,56 @@
+git restore --staged <file added to staging area> to remove file from staging area
+
+git stash to stash an item 
+
+git stash pop to add stashed item back to staging area
+
+git push origin master -f to forcefully commit the staged item. This is required when local and remote commits are different
+
+git reset <commit_id> to restore commit history till this commit. This will unstage the items commited after this commit.
+
+git remote -v to check origin and upstream attached to the project
+
+origin - your own repository url
+upstream - forked respository url
+
+
+Note: Never commit on master branch(default). Always create a new branch when contributing some project. 
+Because some times the code we write might create an issue if done on master branch.
+
+Contributing to a project:
+1.Fork the project
+2.Copy the url of forked repository
+3.clone it on your system
+git clone <repo_url>
+4.create a new branch'checkout to it.
+git branch imtiyaz
+git checkout imtiyaz
+5.make changes.
+6.commit and push
+git add .
+git push origin imtiyaz
+7.now make pull request.
+8.The owner will merge your pull request after he verfies.
+
+Note: 
+1. If working on different features always create branches for each features.
+2. One branch = one pull request. Hence, we can make one pull request if pushing changes from one branch only. That may be confusing for the owner. 
+3. When we fork a repository for contributing to it, it has to be updated with the owner's commits and to do this:
+	Simply, click on Sync fork button.
+	Or,
+	git fetch --all --prune
+	git reset --hard upstream/main(or master)
+	git push origin main(or master)
+
+	Or,
+	git pull upstream master/main
+	gut push origin master/main
+4. To merge different commits:
+	git rebase -i <parent_commit_id>
+	pick before those not to be opted
+	s before those commits which are to be opted (squashed) adding all commits to a parent commit
+
+
+	
+
+
