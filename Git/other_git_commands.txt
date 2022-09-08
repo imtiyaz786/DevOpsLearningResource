@@ -43,7 +43,7 @@ Note:
 	git push origin main(or master)
 
 	Or,
-	git pull upstream master/main
+	git pull upstream master/mai
 	gut push origin master/main
 4. To merge different commits:
 	git rebase -i <parent_commit_id>
