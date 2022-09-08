@@ -11,6 +11,7 @@ From user1
 //give username and token as password for authentication 
 
 From user2
+
 #git clone <repository line> // for first time entire directory can be cloned
 #git init 
 #git add remote origin <repository link>
@@ -38,7 +39,6 @@ Note --> only files not ending with mentioned extensions will be pushed or commi
 #git log -grep "commit" --> look for word commit in commit details.
 
 //Note: local repo does not need to handshake with remote repo everytime we push or pull
-//Note: we can clone for the first
 
 
 

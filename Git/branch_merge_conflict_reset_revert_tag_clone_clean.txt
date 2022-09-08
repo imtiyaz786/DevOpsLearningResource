@@ -1,7 +1,7 @@
 #git branch  --> to see list of available branches
 #git branch branch1 --> create a new branch branch1
 #git branch
-O/P --> *master    //* represents current branch  
+O/P --> *master    //* represents current branch as HEAD points to the master branch
 #git checkout branch1 //switch to other branch
 do whatever changes u need to
 #git checkout master  // switch to master branch
@@ -17,6 +17,9 @@ case of non-conflict : file1 : i am trainer and my name is imtiyaz
                        file2: i am trainer and my name is ali
 case of conflict :     file1 : my name is imtiyaz
                        file2: my name is ali
+
+When two different people make a pull request by making changes in the same place, then merge conflict occurs.
+
 #git merge branch1 //merge branch1 to master
 #git log
 #git push origin master
