@@ -1,0 +1,62 @@
+Ad-hoc commands, Modules & Playbook
+_______________________________________________________________________________________
+
+Push to nodes: 
+
+1.Ad-hoc commands(simple linux modules, temporary):
+	#No Idempotency(executes the similar things again and again)	
+	#commands which can be run individually to perform quick functions.
+	#These commands are not used for configuration management and deployment
+	beacause these are of one time usage.
+	#Uses /usr/bin/ansible command line tool to automate a single task.
+
+
+Go to ansible server
+As ansible user (su - ansible):
+$ansible demo -a "ls" to check details of all nodes available in group demo
+$ansible all -a "ls" to check details of all nodes
+$ansible demo[0] -a "touch filez"
+$ansible all -a "touch file4" to create file 4 in all the nodes
+$ansible demo -a "ls -al" to see all details including hidden ones of all the nodes in demo group
+$ansible demo -a "sudo yum install httpd -y" or ansible demo -ba "yum install httpd -y" to install httpd in all the nodes of demo group
+$which httpd to verify whether httpd is installed or not. O/P --> /usr/bin/ansible(verify the same in demo group nodes)
+Note: b stands for become(used for sudo user), a for arguments.
+$ansible demo -ba "yum remove httpd -y" --> to remove httpd from all demo nodes.
+	
+	
+2.Module(Single work):
+	#[httpd] [start] [web server], written in YAML
+	#It ships with a no of modules (module library) that can be executed directly on remote hosts or through playbook.
+	#Your library of modules can reside on any machine, and no servers, daemons, or databases required.
+	#It is located in /etc/ansible/hosts by default
+	#idempotency
+
+$ansible demo -b -m yum -a "pkg=httpd state=present" or 
+$ansible demo -b -m yum -a "pkg=httpd" --> to install httpd on demo nodes
+$ansible demo -b -m yum -a "pkg=httpd state=latest" to update httpd on demo nodes
+$ansible demo -b -m yum -a "pkg=httpd state=absent" to remove httpd on demo nodes
+Note: In YAML install = "present"
+			  uninstall = "absent"
+			  update = "latest"
+$sudo service httpd status --> to check the status of httpd service(do this on all demo nodes to verify) 
+$ansible demo -b -m service -a "name=httpd state=started" to start httpd on demo nodes
+$ansible demo -b -m user -a "name=raj" to create user on all nodes of demo group
+$cat /etc/passwd to check the created user on node 1 and node 2.
+$ansible demo -b -m copy -a "src=file4 dest=/temp" --> to copy file4 from ansible server to all demo nodes.
+$ansible demo[-1] -b -m copy -a "src=filex dest=/tmp" --> to copy filex from server to last node of demo group.
+$ls /tmp/ to check whether file has been copied on node or not. 
+
+
+setup module
+setup is executed automatically whenever a module or palybook is run. This is done to check whether a particular task has already occured or not.
+setup is similar to database where all the configuration details are available which is verified prior to executing a module or playbook.
+
+$ansible demo -m setup --> returns current configuration of all demo nodes.(this keeps running in background to ensure idempotency)
+$ansible demo -m setup -a "filter=*ipv4*"--> returns only ip address of all demo nodes. 
+			 
+	
+3.Playbooks(More than one module):
+	#uses YAML for scripting
+	#YAML script written in playbook
+	#[httpd, start, web server] in one go
+	#Idempotency

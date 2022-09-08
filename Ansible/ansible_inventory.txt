@@ -6,6 +6,17 @@ Ansible, Inventory, Host Pattern
 _________________________________
 
 1. Create 3 Ec2 instance for ansible server, node1 and node2.
+
+While create ec2 instances: 
+#no of instances = 3
+#Keep VPC default
+#Choose a subnet
+#and keep the subnetting enabled 
+#add User data:
+ 	#!/bin/bash
+ 	sudo su
+ 	yum update -y
+
 2. Go inside ansible server and download ansible package:
 	#wget https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
 	Note: epel stands for extra packages for enterprise linux.
