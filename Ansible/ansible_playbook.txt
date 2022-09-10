@@ -1,0 +1,142 @@
+Ansible Playbook, Variables, Handlers and Loops
+____________________________________________________
+
+Playbook: 
+1. Playbook in ansible are written in YAML format
+2. It is Human readable data serialization language, commonly used for configuration files.
+3. Playbook is like a file where you write codes, consisting of vars, tasks, handlers, files, templates and roles.
+4. Each playbook is composed of one or more modules in a list. Module is a collection of configuration files.
+
+Playbooks are divided into many sections:
+1. Target section: defines the host against which playbook has to be executed. eg, group, node, all.
+2. Variable Section: defines variable.
+3. Task Section: List of all modules that we need to run in an order.
+
+YAML(YET ANOTHER PROGRAMMING LANGUAGE):
+For ansible, nearly every yaml file starts with a list.
+Each item in the list is key value pairs, commonly k/a dictionary.
+A dictionary is represented in a simple key: value form.
+Extension for playbook files is .yml.
+All YAML files have to begin with "---"
+and end with "..."(not mandatory)
+playbook.yml
+All members of a list lines must begin with same indentation level starting with "-".
+eg. ---# A list of fruits
+	   fruits:
+	   - Mango
+	   - Strawberry
+	   - Banana
+	   - Grapes
+	   - Apple
+	...
+	
+eg. --- # Details of Customer
+	- Customer:
+		name: Imtiyaz
+		job: DevOps Engineer
+		Skills: Ansible
+		Experience: 1 years
+Note: There should be space between : and value.
+
+Steps:
+Go to ansible server
+Create one playbook
+$vi target.yml
+--- # Target Playbook
+- hosts: demo
+  user: ansible
+  become: yes
+  connection: ssh
+  gather_facts: yes --> tells private ip
+
+esc --> :wq press enter
+Now execute playbook by
+ansible-playbook target.yml
+rm -rf * to delete all files/folders from the present working directory.
+
+
+
+
+Now create one more playbook in ansible server
+vi task.yml
+--- # Target and Task Playbook
+- hosts: demo
+  user: ansible
+  become: yes
+  connection: ssh
+  tasks:
+	- name: install httpd on linux
+	  action: yum name=httpd state=installed
+	
+	esc :wq press enter to save and quit
+Now execute the playbook.
+
+
+Variables:
+Ansible uses variables which are defined previously to enable more flexibility in playbooks and roles.
+They can be used to loop through a set of given values, access various information like the host name of a system
+and replace certain strings in templates with specific values.
+Put variable section above tasks so that we define it first and use it later.
+
+Now go to ansible server and create one playbook.
+vi vars.yml
+--- # My Variable Playbook
+#1.Target section
+- hosts: demo
+  user: ansible
+  become: yes
+  connection: ssh
+#2.Variable Section
+  vars:
+	pkgname: httpd
+#3.Task Section
+  tasks:
+	- name: install httpd server
+	  action: yum name='{{pkgname}}' state=installed
+
+Now execute.
+
+
+
+
+HANDLERS:
+A handler is exactly the same as a task, but it will run when called by another task
+Or
+Handlers are just like regular task run if the task contains a notify directive and
+indicates that it changed something.
+
+install httpd
+then start
+
+vi handlers.yml
+target section
+tasks:
+	- name: install httpd server
+	  action: yum name=httpd state=installed
+	  notify: restart httpd
+#Handler Section
+handlers:
+	- name: restart httpd
+	  action: service name=httpd state=restarted
+
+DRY RUN
+Check whether the playbook is formatted correctly
+ansible-playbook handlers.yml --check
+
+LOOPS:
+Sometimes you want to repeat a task multiple times. In computer programming, this is called loops.
+Common ansible loops include changing ownership on several files and/or directories with the file
+module, creating multiple users with the user module, and repeating a polling step until certain result is reached. 
+
+#Target Section
+#Task Section
+- name: add a list of users
+  user: name='{{items}}' state=present
+  with items:
+	- Imtiyaz
+	- Nadeem
+	- Shailesh
+	- Abhinav
+	- MJ
+
+$cat /etc/passwd to see users.
