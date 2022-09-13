@@ -1,0 +1,82 @@
+Conditions, Vaults, and Roles in Ansible
+
+Conditions:
+Whenever we have different scenarios, we put conditions according to the scenarios.
+
+when Statement:
+Sometimes you want to skip a particular command on a particular node.
+
+
+--- # condition playbook
+- hosts: demo    //target section
+  user: ansible
+  become: yes
+  connection: ssh
+  tasks:           // task section
+	- name: install apache on debian
+	  command: apt-get -y install apache2 //using command module we can use linux commands.
+	  when: ansible_os_family == "Debian"
+	  
+	- name: install apache for redhat
+	  command: yum -y install httpd
+	  when: ansible_os_family == "RedHat"
+	  
+	  
+vault:
+Ansible allows keeping sensitive data such as passwords or keys in encrypted files, rather
+than a plain text in your playbooks.
+
+ #Creating a new encrypted playbook
+	ansible-vault create vault.yml
+ #Editing encrypted playbook
+    ansible-vault edit vault.yml
+ #Changing pasword
+    ansible-vault rekey vault.yml
+ #Encrypting an existing playbook
+    ansible-vault encrypt target.yml
+ #Decrypting an encrypted playbook
+    ansible-vault decrypt target.yml
+	
+Roles:
+We can use two techniques for reusing a set of tasks: includes and roles.
+Roles are good for organizing tasks and encapsulating data needed to accomplish those tasks.
+
+Ansible Roles:
+Default: It stores the data about role/application.
+         Default Variables eg-> if you want to run to port 80 or 8080 then variable needs to be defined in this path only. 
+files: It contains files that need to be transferred to the remote VM (static files). 
+Handlers: They are triggers or tasks, we can segregate all the handlers required in playbook.
+Meta: This directory contains files that establish roles dependencies eg Author name, supported platform, dependencies if any.
+Templates: 
+Tasks: It contains all the tasks that is normally present in the playbook. Eg, installing packages and copying files, etc. 
+Vars: Variables for the playbook can be specified in this directory and used in your configuration files. Both vars and default stores variables.
+
+
+Roles:
+$mkrdir -p playbook/roles/webserver/tasks
+$tree
+O/P --> tree like directory graphical structure
+$cd playbook/
+$tree
+$touch roles/webserver/tasks/main.yml
+$touch master.yml
+$vi roles/webserver/tasks/main.yml
+
+Inside main.yml
+- name: install apache
+  yum: pkg=httpd state=latest
+exit
+
+Now,
+$vi master.yml
+ -host: all
+  user: ansible
+  become: yes
+  connection: ssh
+  roles:
+	- webserver
+exit
+
+Now, execute
+$vi master.yml
+	  
