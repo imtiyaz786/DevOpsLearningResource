@@ -1,0 +1,43 @@
+Configuration Management
+_____________________________
+It's a method of automating configuration related tasks like installing, updating, initializing, etc.
+Configuration: each and every minute detail of your machine(server, storage).
+Management: Create, Delete or Update, etc.
+
+Before Automation
+_________________
+
+#System Administrator used to manage all the servers and do the configuration manually.
+#It required manual efforts, overhead to manage large number of servers.
+#Hence, it was time-consuming and had high margin of errors with reduced efficiency.
+
+After Automation
+________________
+We now have configuration management tools available in the market which are of two types: 
+1.Push based configuration: Push based configuration server pushes configuration to all  the nodes connected to it.
+#It has more control and is easier to implement.
+eg. Ansible, Salt Stac
+
+2.Pull based configuration: Pull-based configured nodes check with the server periodically and fetches the configuration from it.
+# Specifically used when new machine needs to be configured or initialized.
+eg. Chef, Puppet.
+
+Infrastucture as Code (IaC) means creating or building infrastructure using code. Thus, configuration management tool can also be termed as IAC tool.
+
+# It turns code into infrastructure.
+# code would be repeatable, testable, and versionable
+
+Advantage:
+
+-> Complete Automation
+-> Increase UpTime
+-> Improve Performance
+-> Ensure Compliance
+-> Prevent Errors
+-> Reduce Cost.
+
+#Configuration Management is part of operation in DevOps.
+
+
+
+
