@@ -1,0 +1,44 @@
+MAVEN JOB
+
+Pre-requisite
+1.	Jenkin
+2.	Git
+3.	Java
+4.	Windows 10
+Note:
+1.	Since we already installed all the required tools on the machine, we need to ensure Jenkins does not auto-install when running maven project. For that we can uncheck auto-install option and provide name and path of all required tools.
+2.	For Git, we do not have to explicitly provide name and path as it automatically detects where it is located.
+Maven Project (By Maven)
+1.	Fork any maven project on GitHub and copy it to your GitHub account
+2.	Now clone it on your local machine: git clone <repo URL>
+3.	Go inside the repo folder through command prompt: cd <time-tracker>
+4.	Build project using maven: mvn clean package
+Installation & Configuration
+1.	Log into Jenkins by using localhost:8080 and providing username and password.
+2.	Go to manage Jenkins on left side of Jenkins dashboard.
+3.	Manage Plugins.
+4.	Update Jenkins if it is asking
+5.	Update all plugins if required.
+6.	Available.
+7.	Select Maven Integration & Green Ball
+8.	Install without start
+9.	Try to re-start Jenkins after done with plugins installation
+10.	Now go to Manage Jenkins
+11.	Global Tool Configuration
+12.	Add JDK: Untick automatic installation; Provide name and jdk path
+13.	Now do the same for Maven.
+14.	Git location is automatically detected  by Jenkins, we don’t have to explicitly mention its name and path.
+15.	Apply and Save 
+
+Maven Project (Using Jenkins)
+1.	Create New item on Jenkins
+2.	Item name: MyMavenProject
+3.	Select Maven Project
+4.	OK
+5.	Source Code Management: git Repository URL
+6.	Build Option -> Root POM -> pom.xml
+7.	Goals & Options -> clean package  -> Save
+8.	Go to Jenkins home page -> click on MyMavenProject -> Build Now
+9.	Now go to GitHub account and make some wrong changes in project URL
+10.	Come back to Jenkins and try to build MyMavenProject again with errors.
+11.	Go to GitHub URL and fix error and again build MyMavenProject to ensure successful build.
