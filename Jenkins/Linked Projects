@@ -1,0 +1,22 @@
+Linked Projects
+
+Types of linked projects:
+
+1.Upstream:
+  #User triggers Job A
+  #Job A executes itself
+  #Job A triggers Job B’s execution
+Upstream linked Project:
+  #Create two jobs Job A and Job B
+  #Configure Job A and provide Job B in “Build other projects” under the section Post-Build Actions
+  #Now, If we trigger Job A, Job A will first execute itself and triggers Job B for execution.
+  
+2.Downstream
+  #User triggers Job Y
+  #Job Y  triggers Job X’s execution  
+  #Job Y executes itself
+Downstream linked Project:
+  #Create Job X and job Y
+  #Configure Job Y and check “Build after other projects are built” under Build Triggers and provide Job X in “Projects to watch”.
+  #Now, If we trigger Job Y, Job Y will first trigger Job X for execution and then executes itself. 
+
