@@ -1,0 +1,24 @@
+Schedule Task & Poll SCM
+
+Scheduled Project
+1.	Click on any project
+2.	Configure 
+3.	Build triggers
+4.	Build Periodically
+5.	* * * * * 
+6.	Save
+7.	You can see automatic build after every minute
+8.	You can manually trigger build as well
+Source Code Polling
+1.	Now go to Jenkins Homepage
+2.	Go to MyMavenProject 
+3.	Configure
+4.	Now go to Build trigger
+5.	Check Poll SCM option
+6.	Schedule 
+7.	* * * * * 
+8.	 Save
+9.	Now go to GitHub account
+10.	Do some changes in README.md
+11.	Commit changes
+12.	You can see after 1 min, it builds automatically
