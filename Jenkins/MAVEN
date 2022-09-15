@@ -1,0 +1,115 @@
+MAVEN
+Build Tool
+1.	It takes care of everything for building a process.
+2.	It does the following tasks:
+3.	Generate source code
+4.	Generate documentation from source code
+5.	Compiles source code
+6.	Install the package code in local repo, server repo or central repo.
+Problems without Maven
+1.	Adding set of jars in each project: IN case of strubs, spring, we need to add jar files in each project. It must include all the dependencies of jars also
+2.	Creating the right project structure: we must create right project structure in servlet, struts, etc. Otherwise, it will not be executed. E.g.; .war file layout
+new jar
+      index.html
+      web-INF
+                 web.xml
+                 weblogic.xml
+                 classes
+3.	Building and deploying the project: we must have to build and deploy the project so that it works.
+What is Maven?
+1.	Maven is an Automation and project management tool developed by Apache Software Foundation. It is based on POM(Project Object Model) pom.xml
+2.	Java Project Management Tool
+3.	It follows Convention over configuration.
+4.	Maven can build any no of projects into desired outputs such as .jar, .war, metadata
+5.	It is mostly used for java-based projects
+6.	It was initially released on 13th July 2004
+7.	It has been written in java
+8.	Meaning of maven is accumulator of knowledge
+9.	Maven helps in getting the right jar file for each project as there may be different version of separate packages.
+10.	To download dependencies, it is no more needed to visit the official website of each software. It could now be easily done by visiting mvnrepository.com
+Important Terminologies
+1.	Dependencies: It refers to the java libraries that are needed for the project.
+2.	Repositories: It refers to the directories of packaged jar files.
+Java Project Structure
+1.	Source Code
+2.	Test Code
+3.	Project Structure(assets, directories, resources)
+4.	Dependencies/libraries
+5.	Configuration
+6.	Task runner – build test run
+7.	Reporting
+Note: Other substitutes of Maven are Gradle, ant
+What Maven does?
+1.	It makes a project easy to build
+2.	It provides project information, for e.g.; log document, Cross References Sources, mailing list, dependency list, unit test.
+3.	Easy to add new dependencies. Therefore, Apache Maven helps to manage:
+a.	Build compiler converts source code to machine/binary code
+b.	Dependencies
+c.	Reports
+d.	Releases
+e.	Distribution
+POM
+1.	It refers to the XMLfiles that have all the info regarding project and configuration details.
+2.	Main configuration file is pom.xml
+3.	It has the description of the project, details regarding the versioning and configuration management of the project.
+4.	The XML file is in the project home directory.
+5.	Pom.xml contains:
+a.	Metadata
+b.	Dependencies
+c.	Kind of project
+d.	Kind of output(.jar, .war)
+e.	Description
+Note: One project -> One workspace -> one pom.xml
+Requirement for Build
+6.	Source code (Present in workspace)
+7.	Compiler(remote repo -> local repo-> workspace)
+8.	Dependencies(remote repo-local repo-workspace)
+Architecture of Maven
+9.	It has its own local repo when installed with name .M2. Communicates with remote repo when missing dependencies
+10.	Local Repository  It refers to the machine of the developer where all the project is saved.
+11.	Remote Repository  It refers to the repository present on a webserver which is used when maven needs to download dependencies. This repository works same as the central repo whenever anything is needed from remote repository it is first downloaded to the local repo then it is used.
+12.	Central repository  central repo refers to the maven community that comes into action when there is a need of dependencies, and these dependencies can not be found in the local repo
+Maven Build Life-cycle
+Goals:
+1.	Generate Resources(Dependencies)
+2.	Compile Code
+3.	Unit test
+4.	Package(Build)
+5.	Install into local repo and antifactory
+6.	Deploy to servers
+7.	Clean(delete all run time files)
+13.	mvn install
+14.	mvn clean package 
+8.	1 to 6 Default Sequence Order
+9.	7 is not default and It won’t allow sequence
+10.	Build lifecycle consists of a sequence of build phases and each build phase consist of a sequence of goals. 
+11.	Each goal is responsible for a particular task
+12.	When a phase is run all the gorals related to that phase and its plugins are also compiled.
+
+Ant:
+#Does not have formal conventions, so we need to provide info of the project structure in build.xml file
+#Ant is procedural, you need to provide info about what to do and when to do through code.
+#There is no lifecycle.	
+#It is a toolbox.
+#It is mainly a build tool.
+#It is less preferred than Maven.
+
+Maven:
+#Maven has a convention to place source code, compiled code, etc., so we don’t need to provide info about the project structure in pom.xml
+#Maven is declarative, everything you define in the pom.xml file.
+#There is lifecycle.
+#It is a framework
+#Project management tool.
+#It is more preferred.
+
+
+
+Key Points:
+1.	.jar – java archive
+2.	.war – web archive
+3.	Versions: 20.3.2
+  #20 --> Major
+  #3 --> Minor
+  #2 -->  Patch
+
+
