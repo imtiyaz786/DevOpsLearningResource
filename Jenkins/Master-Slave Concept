@@ -1,0 +1,37 @@
+Master Slave Concept
+
+1.	Master and slave have their own directories.
+2.	We need to install a file agent.jar to create a link between slaves and their directories.
+3.	However, there is no guarantee if a particular is built by a particular slave. It is assigned randomly to anyone, even master can be assigned to build that job.
+4.	To avoid this, we have label that ensures what job will be built by whom. All you need to do is to attach a label with job and attach the same label to the slave you want to assign with that job.
+Creating Slaves
+1.	Manage Jenkins
+2.	Manage Nodes and Clouds in System Configuration 
+3.	You will see a master there
+4.	Click on new node available at the left section of the page
+5.	Provide node name as slave1 and make it permanent agent
+6.	OK
+7.	In Remote root directory, give path directory where you wish to save the work of slave. Let’s us say: c:\slave1dir
+8.	Select launch agent via execution of command on the master in launch method.
+9.	Expand Launch command option and download agent.jar file
+10.	Paste agent.jar file on C Drive.
+11.	In Launch command, write: java -jar c:\agent.jar
+12.	Save
+13.	You will see Slave1 added, now.
+14.	Similarly, create another node slave2 but for a change select Copy existing Node and provide slave1 in Copy from box.
+15.	OK
+16.	In Remote directory change slave1 to slave2 this time
+17.	Now Save.
+18.	Hurray! Now, we have two slaves: slave1 and slave2 created.
+19.	Now if we try to build any job, anyone from slaves or master can take this job.
+Assigning task to a particular slave
+1.	Mange Jenkins
+2.	Manage Nodes and Clouds
+3.	Click on slave1 and configure
+4.	Give it a label, for example: preference
+5.	Save
+6.	Now, Go to the job you want slave1 to build and configure it.
+7.	Check the option ‘’Restrict where this project can be run’
+8.	Give the same label as that of slave1 in Label Expression
+9.	Save
+10.	Now, if we try to build this job, only slave1 will take it up.
