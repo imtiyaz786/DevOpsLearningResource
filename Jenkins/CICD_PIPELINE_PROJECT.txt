@@ -49,9 +49,9 @@ Open cmd:
 	 dir -- to see the repo folder (samplewebapp)
 
 
-Jenkins jobw to be created: 
+Jobs to be created: 
     githubpull --> github plugin
-	Build&CodeReview --> ant and warning next gen plugins  -- error.xml
+	uild&codereview --> ant and warning next gen plugins  -- error.xml
 	unittest --> junit plugins err.xml
 	deploy --> deploy to container
 
@@ -66,7 +66,7 @@ Continous Building -> Build, Code Review and Publish Results
 -------------------------------------------------------------
 -> Manage jenkins -> manage plugins -> Ant & Warning next gen -> install withour Restart
 -> New item -> Build&CodeReview -> free style project -> OK
--< Build&CodeReview -> configure -> general -> Advanced -> Use Custom workspace ${JENKINS_HOME}/workspace/samplewebapp
+-> buildandcodereview-> configure -> general -> Advanced -> Use Custom workspace ${JENKINS_HOME}/workspace/samplewebapp
 -> Source Code Management -> git -> copy github repo url and paste
 -> Build -> invoke ant (leave the target default)
 -> Post Build action: Record compiler warnings and static analysis results (Publish result analysis) -> Tool: CheckStyle, Report File Pattern checkstyle-result.xml -> save.
