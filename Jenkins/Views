@@ -1,0 +1,12 @@
+Views
+
+Creating View using Jenkins
+1.	Click on + right to All option on Jenkins’s home page
+2.	Give View name as FREESTYLE PROJECTS
+3.	Select List View
+4.	OK
+5.	Now select already created jobs which you wan to add in list view
+6.	Click OK
+7.	Now we will have separate section for FreeStyleProjects with all selected jobs
+8.	This way, we can segregate our jobs
+9.	Similar we can delete or edit(for renaming or adding/deleting jobs) our views using options available at the left section of Jenkins Dashboard.

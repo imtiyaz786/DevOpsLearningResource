@@ -1,0 +1,42 @@
+                  User Management
+
+1.	Go to Jenkins’ Homepage
+2.	Manage Jenkins
+3.	Manage Users
+4.	Create two Users: ‘Imtiyaz’ and ‘Ali’
+5.	Now login as Imtiyaz(By default you have all the permission)
+6.	Login as Admin
+7.	Go to Manage Jenkins
+8.	Manage Plugins 
+9.	Search for ‘Role Based Authorization strategy’ and ‘Authorize Project’(if required)
+10.	Install without restart
+11.	Go to Jenkins
+12.	Manage Jenkins
+13.	Configure Global Security
+14.	Select ‘Allow users to sign up’ under ‘Jenkins own user database option’(already selected option)
+15.	Select Role Based Strategy in Authorization
+16.	Select Project based Matrix Authorization Strategy and Add user/group which is Imtiyaz and Ali
+17.	Give read and view permission to both here.
+18.	Save
+19.	Login as Imtiyaz  Access denied
+20.	Now attach permissions by logging as admin
+21.	Go to Jenkins
+22.	Manage Jenkins
+23.	Manage and Assign Roles
+24.	Manage Roles
+25.	Role to add  Employee
+26.	Provide view and read permission only in Global roles.
+27.	Go to assign Role  add Developer and Tester
+28.	Pattern: Developer  dev*, Tester  test*
+29.	Give all permissions to Developer and Tester in Item roles
+30.	Save
+31.	Then, Assign Roles
+32.	User/group to add  ‘Imtiyaz’ and ‘Ali’ in Item roles
+33.	Item roles:
+    User/group	Developer	Tester
+    Imtiyaz	      ✔	
+    Ali		                  ✔
+34.	Save
+35.	Now we can login to as Imtiyaz and Ali but with read and view permission only. 
+
+Note: If opening through other than local machine: private_ip:8080
