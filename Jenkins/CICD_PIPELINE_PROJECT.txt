@@ -1,0 +1,126 @@
+Complete DevOps Project
+------------------------
+
+Pre-requisite software:
+1.Git: download and install
+2.Java:download, install and configure(set environment variables)
+3.Tomcat Server: (32bit/64-bit Windows Server Installer )
+  #choose administrator login while configuring. 
+  #Provide username and password.
+  #tomcat runs on localhost:8080 by default.
+4.Jenkins: download jenkins.war (Generic Java package)
+  #Jenkins to be run on tomcat server 
+  #Put jenkins.war inside C:\Program Files\Apache Software Foundation\Tomcat 9.0\webapps
+  #To access jenkins: localhost:8080/jenkins
+  #Create a directory: JENKINS_HOME and configure environment variable for the jenkins path.
+  
+5.Ant: Download Apache Ant(ant apache org/bindownload.cgi)
+	   #download bin.zip & unzip (1.9.15) & copy ANT folder in C drive
+       #Set environment variable (in user variable) (ANT_HOME & ant downloaded path)
+       #System Varibles-in path , (ant's bin directory downloaded path)
+       #restart and ant-version , echo %ANT_HOME%(in cmd prompt)
+       #restart your pc
+
+Starting Jenkins
+------------------------
+
+#Start Jenkins by navigating to Tomcat web Application Manager running on localhost:8080, and cliking on start button.
+#Type url: localhost:8080/jenkins on the browser
+#Select plugins to install and select none.
+#click on install
+#create first admin user.
+#keep the path as it is
+#save and click
+#once jenkins is ready, click on start using jenkins.
+#Hurray! We have started jenkins.
+
+
+Cloning GitHub Repo in your local machine
+-----------------------------------------
+
+Login to your GitHub Accout
+Look for any java project repo
+Fork the url
+now copy the forked repo url.
+Open cmd:
+     C:/>mkdir gitworkspace
+	 cd gitworkspace
+	 git clone <copied url>
+	 dir -- to see the repo folder (samplewebapp)
+
+
+Jenkins jobw to be created: 
+    githubpull --> github plugin
+	Build&CodeReview --> ant and warning next gen plugins  -- error.xml
+	unittest --> junit plugins err.xml
+	deploy --> deploy to container
+
+Create a Job to pull code:
+-------------------------------
+-> Manage jenkins -> manage plugins -> Available -> GitHub -> Install withour Restart
+-> New item -> githubpull -> Freestyle project -> OK
+-< githubpull -> configure -> general -> Advanced -> Use Custom workspace ${JENKINS_HOME}/workspace/samplewebapp
+-> Source Code Management -> git -> copy github repo url and paste
+
+Continous Building -> Build, Code Review and Publish Results
+-------------------------------------------------------------
+-> Manage jenkins -> manage plugins -> Ant & Warning next gen -> install withour Restart
+-> New item -> Build&CodeReview -> free style project -> OK
+-< Build&CodeReview -> configure -> general -> Advanced -> Use Custom workspace ${JENKINS_HOME}/workspace/samplewebapp
+-> Source Code Management -> git -> copy github repo url and paste
+-> Build -> invoke ant (leave the target default)
+-> Post Build action: Record compiler warnings and static analysis results (Publish result analysis) -> Tool: CheckStyle, Report File Pattern checkstyle-result.xml -> save.
+
+Continous Testing -> Run tests and Publish JUnit test Reports:
+--------------------------------------------------------------
+-> Manage jenkins -> manage plugins -> JUnit Realtime Test Reporter -> install withour Restart
+-> New item -> unittest -> free style project -> OK
+-< unittest -> configure -> general -> Advanced -> Use Custom workspace ${JENKINS_HOME}/workspace/samplewebapp
+-> Source Code Management -> git -> copy github repo url and paste
+-> Build -> invoke ant and target = junit
+-> Post Build action: Publish JUnit test result report(Publish result analysis) -> Test report XMLs: TestCalculator_JUNitResult.xml->  apply and save.
+
+Change default path for tomcat server
+Go to C:\Program Files\Apache Software Foundation\Tomcat 9.0\conf
+Right click on server and edit with notepad++
+Now inside  <connector/> tag, change port = "8080" to port = "8090" and save the file.
+Now restart the tomcat server
+try to run server on localhost:8090 port.
+Go to C:\Program Files\Apache Software Foundation\Tomcat 9.0\conf
+Right click on tomcat-users.xml and edit with notepad++
+Now replace <user /> with <user username="admin"password="admin" roles="manager-gui, manager-script, admin"/>  and save and close
+
+Continous Deployment Deploy code to production:
+------------------------------------------------
+-> Manage jenkins -> manage plugins -> Deploy to Container -> install withour Restart
+-> New item -> deploy  -> free style project -> OK
+-< deploy -> configure -> general -> Advanced -> Use Custom workspace ${JENKINS_HOME}/workspace/samplewebapp
+-> Source Code Management -> git -> copy github repo url and paste
+-> Build -> invoke ant and target = war
+-> Post Build action: Deploy war/ear to a container-> WAR/EAR files: **/*.war, Context path: samplewebapp(this name will be visible on tomcat server)
+-> Containers -> Add Containers --> Choose Tomcat 9.x Remote -> Credentials -> Add -> Select Jenkins -> Provide Jenkins username and password -> Add
+-> Change credential from none to admin/***** -> Add tomcat url : http://localhost:8090 --> Apply and Save.
+
+
+CI/CD Build Pipeline
+--------------------
+
+-> Install "Build 	Pipeline"
+-> go to githubpull -> configure -> Postbuild action -> Build other project -> buildandcodereview -> save
+-> go to buildandcodereview -> configure -> Postbuild action -> Build other project -> unittest -> save
+-> go to unittest -> configure -> Postbuild action -> Build other project -> deploy -> save
+
+-> click on '+' -> complete pipeline -> Build pipeline view -> OK
+                    Upstream/downstream config: select Initial job -> githubpull -> Apply and  Ok
+-> go to githubpull -> configure -> Poll SCM -> * * * * *
+
+
+
+
+
+
+	
+	
+
+
+
