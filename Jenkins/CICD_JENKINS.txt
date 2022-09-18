@@ -1,0 +1,44 @@
+CI/CD Pipeline
+--------------
+
+Continous Integration and Continous Delivery
+Continous Integration = Continous Build + Continous Testing
+
+Learn more: https://www.redhat.com/en/topics/devops/what-cicd-pipeline
+
+JENKINS
+---------------
+-> An open source project written in Java  that runs on windows, MacOS and other Unix-like operating system. 
+-> It is free, community supported and might be your first choice tool for CI.
+-> It automates the entire software development life cycle.
+-> It was originally developed by Sun Microsystem in 2004 under the name Hudson.
+-> The project was later named jenkins when Oracle bought Microsystem.
+-> It can run on any major platform without any compatibility issues.
+-> Whenever developers write code, we integrate all those source codes at that point of time which is build, tested and delivered/deployed
+	to the client. This process is called CI/CD.
+-> It helps to achieve CI/CD this because  of CI as new bugs are reported fast and get rectified instantly. 
+	Thus, the entire software development culminates faster.
+
+WorkFlow
+-------------
+-> We can attach git, Maven, Selenium and artifactory plugins to Jenkins.
+-> Once developer pushes the code in github, jenkins pulls that and sends to the Maven for Build.
+-> Once, Build is done, jenkins pull that code and send it to selenium for testing.
+-> Once testing is done, jenkins pull the code and send to artifactory(for archiving purpose) as per requirement and so on.
+-> We can also deploy with jenkins.
+
+Advantages
+-------------
+
+-> It has lots of plugins available.
+-> You can write your own plug-in.
+-> You can also use community-plugins.
+-> It is not just a tool, but also a framework. You can do whatever you want, all you need is plugins.
+-> We can attach slaves(nodes) to jenkins master. It instructs other(slaves) to do job. If slaves are not available, jenkins itself does the job.
+-> Jenkins also behave as Crone Server  Replacement which can do task scheduling.
+-> It can create labels.
+
+#Important point: Build = compile -> Code Review -> Unit Testing -> Integration Testing -> Packaging(WAR, JAR).
+
+
+

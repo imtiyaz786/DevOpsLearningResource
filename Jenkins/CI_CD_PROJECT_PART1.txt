@@ -1,0 +1,71 @@
+CI/CD Pipeline: Project - Part 1.
+---------------------------------
+
+Pre-requisite
+---------------------------------
+
+1. git - download and install
+   #git --version //check git version
+   
+2. java - download(bin.exe), install and configure
+   #java -version // check java version
+   #echo %Environment Variable Name% //see path of java environment variable
+   
+3. maven - download(binary zip archive) and extract,  and configure
+   #mvn -version //to check version
+   #echo %Environment Variable Name% //to see path of environment variable
+   #restart the system
+   
+4. jenkins - download, install and configure
+   #After installation, it automatically open at localhost:8080
+   #Unlock the page by using password
+   #install suggested plugins
+   #ask for user name and password, email
+   #provide the required things
+   #Save & Continue
+   #Start using jenkins
+   #To restart jenkins: localhost:8080/restart
+
+Note: Plug-ins: Plug-ins are small libraries that add new abilities to jenkins and can provide integration points to other tools.
+
+_____________________________________________________________________________________________________________________
+PROJECT 1:
+----------
+#Click on new item
+#Enter the item name
+#Choose Freestyle project
+#Click 'OK'
+#Under Build option, select Execute Windows batch command
+#write command: echo "Hey"
+#Now Apply and Save
+#Go to dashboard, you will see your job. 
+#Expand your job, you will have an option for build
+#Choose Build now
+#Hurray! we are done with first project.
+#Now we can verify whether it is built or not by navigating to Build History.
+#Under build history, We can expand the built job to see the details on console output.
+#Similarly, We can also rename or delete the item by expanding it on dashboard and selecting relevant option.
+______________________________________________________________________________________________________________________
+PROJECT 2:
+----------
+#Repeat the same thing as we did in project 1.
+#But this time, give some random commands(incorrent) as windows batch command.
+#If we build this item, we will see failed build.
+_______________________________________________________________________________________________________________________
+PROJECT 3:
+----------
+#Now to correct build error in project 2, expand the project 2 item and this time select configure.
+#There you can correct windows batch command and try to rebuild again.
+#This time you will have successful build.
+________________________________________________________________________________________________________________________
+PROJECT 4:
+----------
+#Create another item.
+#Instead of selecting freestyle project, provide the already existing item name in Copy from section at the bottom.
+#Save it. It will be similar to the copied from job and serves the same purpose.
+#That's how we can copy already existing job.
+_________________________________________________________________________________________________________________________
+
+
+
+ 
