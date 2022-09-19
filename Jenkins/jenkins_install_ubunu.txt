@@ -1,0 +1,21 @@
+Installing Jenkins on Ubuntu
+-------------------------------------
+#Log into AWS account and create one Ubuntu instance
+#Access it through putty -> login as 'ubuntu'
+
+Use given commands:
+
+$sudo apt-get update
+$sudo apt-cache search openjdk
+$sudo apt-get install openjdk-8-jdk
+$java -version
+#Download Debian package using wget command. Check official site to download package on Ubuntu machine and paste the same command on your machine to finish downloading.
+$sudo vi /etc/apt/sources.list and 
+paste at the bottom: deb https://pkg.jenkins.io/debian-stable binary/
+$sudo apt-get update
+$sudo apt-cache search jenkins
+$sudo apt-cache madison jenkins //check available jenkins version
+$sudo apt-get install jenkins -y
+$sudo service jenkins status //press q to exit
+#copy public ip from AWS and paste in chrome URL -> public_ip:8080
+$sudo cat /var/lib/initialAdminpassword //jenkins administrator password
