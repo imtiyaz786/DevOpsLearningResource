@@ -1,0 +1,137 @@
+K8s ARCHITECTURE & ITS DEMO
+
+Role of Master Node
+-----------------------------
+#K8s cluster contains Containers running on Bare Metal/VM/instances/cloud instances/all mix.
+#K8s designates one or more of these as master and all others as workers.
+#The master is now going to run set of K8s processes. These processes will ensure smooth functioning of cluster. These processes are called "Control Plane".
+#Can be multi-master for high availability.
+#Master runs control plane to run cluster smoothly.
+
+Components of Control Plane (Master)
+-------------------------------------
+1.Kube-api-server(For all communications)
+#This api-server interacts directly with user (i.e. we apply .yml or .json manifest to Kube-api-server).
+#This Kube-api-server is meant to scale automatically as per load.
+#It is front-end of Control-plane.
+
+2.etcd 
+# stores metadata and status of cluster.
+#etcd is consistent and highly-available store(key-value store)
+#source of touch for cluster state (info about state of cluster)
+#It has following features:
+ 1.Fully Replicated- This entire state is available on every node in the cluster.
+ 2.Secure- Implements automtic TLS with optional client-certificate authentication.
+ 3.Fast- Benchmarked at 10,000 writes per second.
+
+3.Kube-Scheduler(action)
+#When users make request for the creation & management of PODs, it is going to take action on theser requests.
+#Handles POD creation and management.
+#Kube-Scheduler match/assign any node to create and run pods.
+#A scheduler watches for newly created PODs that have no node assigned.
+ For every pod that the scheduler discovers, it becomes responsible for finding best node for that pod to run on.
+#It gets the info for hardware configuration from configuration files and schedules the pods on nodes accordinly.
+
+4.Controller- Manager
+#makes sure actual state of cluster matches to desired state.
+#Two possible choices for controller manager:
+  A.If K8s on cloud, then it will be cloud-controller-manager.
+  B.If K8s on non-cloud, then it will be Kube-Controller-Manager.
+
+
+Worker/Minion
+--------------------------------------
+There can be any number of nodes.
+In general, we have only one container in A POD.
+This is  due to the fact that containers in a single POD are tightly coupled.
+And, if such is the case, any failure to a container will affect other coupled containers as well.
+As a result, all the containers in that POD will fail.
+
+Concept of POD:
+Since, we have different types of containers eg, docker, Container-D, Rocket, etc.
+And, each type of container have different specification/architecture.
+So, managing different kinds of container by K8s will have complications. 
+Therefore, we use POD which is going to be specific for each kind of containers.
+K8s will easily manage/container PODs.
+
+Failed PODs can not be re-created, hence we need to create new POD.
+
+Working with K8s
+#We create manifest (.yml or .json)
+#Apply this to cluster(to master) to bring into desired state.
+#POD runs on node, which is controlled by master.
+  
+Components on master that runs controller
+------------------------------------------
+1.Node-Controller: For checking the cloud provider to determine if a node has been detected in the cloud after it stops responding.
+2.Route Controller: responsible for setting up network, routes on your cloud.
+3.Service Controller: responsible for load balancer on your cloud against services of type load Balancer.
+4.Volume Controller: For creating, attaching and mounting volumes and interacting with the cloud providers to orchestrate volume.
+
+
+Workers/Nodes(Kubelet and Container Engine)
+-----------------------------------------------
+Node is going to run 3 important piece of software/process.
+
+1.Kubelet
+---------
+#Agent running on the node.
+#Listens to K8s master  (eg; pod creation request).
+#uses 10255 port
+#send success/fail reports to master.
+
+2.Container Engine(Docker)
+----------------
+#works with Kubelet
+#Pulling images
+#Start/Stop Containers
+#Exposing containers on ports specified in manifest.
+
+3.Kube-proxy
+---------------
+#Assigns IP to each Pod.
+#It is required to assign IP addresses to PODs (dynamic).
+#Kube-proxy runs on each node and this makes sure that each pod will get its own unique IP addresses.
+
+These 3 components collectively consists in a node.
+
+POD
+-----
+#Smallest Unit in K8s.
+#POD is a group of one or more containers that are deployed together on the same host i.e. on same node.
+#A cluster is a group of nodes.
+#A cluster has atleast one worker node and one master node.
+# In K8s, the control unit is the POD, not containers.
+#consists of one or more tightly coupled containers.
+#POD runs on node, which is controlled by master.
+#K8s only knows about PODs(does not know about individual container).
+#Can not start containers without a POD.
+#One POD usually contains one container.
+
+Multi-Container PODs
+_____________________
+#Share access to memory space.
+#Connect to each other using localhost<container port>.
+#share access to the same volume.
+#containers within pod are deployed in an all-or-nothing manner.
+#Entire POD is is hosted on the same node (scheduler will decide about which node).
+
+Limitations of Pod
+------------------
+#No auto-healing or auto-scaling by-default.
+#POD crashes.
+
+
+Higher Level K8s Objects (plugins)
+------------------------
+
+Replication Set: Auto- Scaling and Auto-healing.
+Deployment: Versioning and Rollback.
+Service: Static(No-ephemeral) IP and Networking.
+Volume: Non-ephemeral storage (outside-node storage. will remain even if Pod fails)
+
+Important
+----------
+Kubectl -> Single Cloud eg AWS
+Kubeadm -> on-premise
+Kubefed -> Federated/hybrid.
