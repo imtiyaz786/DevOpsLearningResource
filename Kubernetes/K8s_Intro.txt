@@ -1,0 +1,180 @@
+INTORODUCTION TO KUBERNETES
+
+What to know before starting off with K8s
+1. Docker/Container
+2. Monolithic/Microservice
+
+Monolithic
+----------------
+Ealier, we used to have the concept of monolithic application which is a single-lage solution for specific problem.
+For Example, A single-tiered Banking application where UI and data-access code are incorporated into a single large solution having a large complex database.
+
+Limitation with Monolithic architecture
+---------------------------------------
+1. Large and complex application are difficult to understand.
+2. Makings changes to it is cumbersome.
+3. Not scalable enough. 
+
+
+Solution to this problem: Microservice
+--------------------------------------
+IT industry has adopted the use of Microservice application to overcome the challenges posed with the use of monolithic architecture for software developement.
+In microservice architecture, multiple services with particularly singele core functionaliy which are light-weight and to be independently deployed are created.
+Each microservice has its own database, hence it becomes easier the manage and scale.
+For example: A facebook like app having micro-services for fuctionalities such as:
+			login
+			newsfeed microservice
+			post microservice, etc
+			having their own databases respectively.
+			
+#These microservices can be accessed through API Gateway
+#These services are loosely coupled. These might or might not be coupled with other microservices.
+
+Problem without Container/Docker
+----------------------------------------
+#Each microservice requires server with different capacity.
+#Some require heavy while some can operate on light weight server also.
+#So, before container concept came into picture, we used to pre-allocate servers with specific capacity based on our own estimations.
+#Pre-allocation posed a great challenge because not all micro-services are of same weight, each requires different capacitous server. 
+
+Introduction of Docker/Container
+------------------------------------------
+#To tackle the issue, concept of container was introduced.
+#Specifically Docker came into use for creating containers that we already studied.
+
+Few advantages of Docker
+--------------------------------------------
+#Cantainer Images can be shared
+#Multiple containers can operate over a single server 
+#Better utilization of resources
+
+
+Before Kubernetes
+-------------------------
+Since, we seem to have tackle issues but there was still something to manage.
+Here is what we had to deal with:
+
+1.Generally we create multiple containers through docker command but if large number of containers are to be created.
+  And, it would not be a great idea to run docker commands 1000 times for creating 1000 containers.
+2.Also, we may come across a situation where we have multiple images and from each image we have to create so many containers.
+  Let's suppose we have created certain amount of containers and at some point we reliaze we have created extra containers which are of no use.
+  Hence, they need to be removed/deleted but the question is How? We had so many issues but we need a way out to control these containers.
+3. Not only these, we might be running some containers on the server and suddenly traffic upsoars.
+  In that case we will have increase the no of containers which does not seem possible in normal scenario.
+4. Problems with Scaling up the Containers:
+   #Containers can not communicate with each other.
+   #Autoscaling and load balancing was not possible.
+   #Containers had to be managed carefully.
+  
+  
+Intoduction of Kubernetes
+--------------------------------
+
+Here comes the Kubernetes in picture as a solution to aforementioned problems.
+It provided auto-scaling, eg. containers can be created or deleted based on requirements or users' demands.
+As the traffic goes up, container automatically created more containers.
+As the traffic goes down, container automatically deletes unused containers.
+Not only docker containers but also other containers like Container-D, Rocket are supported by Kubernetes.
+No doubt, docker has its own orchestration/management tool that is also kubernetes' competitor Docker Swarm.
+It is a container management tool with 57% market share as compared to other tools.
+It is also known as K8s (numeronym),
+It was initially created under Project7, hence the seven wheel can be seen in kubernetes logo.
+
+
+Kubernetes
+----------------
+#Kubernetes is an open-source container management tool which automates container deployment, container scaling and load balancing.
+Load Balancing: Each container is assigned with equal no of requests to process.
+#It schedules, runs and manages isolated containers which are running on virtual/physical/cloud machines.
+Each container acts like a server in itself hence the term isolated and has a microservice running inside it.
+#All top cloud providers support Kubernetes.
+
+History:
+#Google developed an internal system called 'borg'(later named as Omega) to deploy and manage  thousands google application and services on their cluser.
+Cluser: group of containers.
+#In 2014, Google intoduced Kubernetes an open-source platform written in 'Golang' and later donated to CNCF.
+CNCF -> Cloud Native Computing Foundation.
+
+Online Platform for K8s:
+------------------------
+#Kubernetes playground
+#Play with K8s
+#Play with kubernetes classroom
+
+Cloud-based K8s Services
+--------------------------
+#GKE: Google Kubernetes Services
+#AKS: Azure Kubernetes Services
+#Amazon EKS (Elastic Kubernetes Services)
+
+Kubernetes Installation Tool
+----------------------------
+#Minicube
+#Kubeadm
+
+Featurs of Kubernetes
+-----------------------
+#Orchestration(clustering of any no of containers running on different networks).
+Suppose we have three containers running on cloud, on-premise and virtual, then k8s can cluster these into a single cluster.
+So works well with Hybrid, private as well as public cloud
+#Autoscaling(Vertical as well as Horizontal scaling)
+Vertical scaling: capacity of containers can be increased or decreased. 
+Horizontal scaling: increasing or decreasing no of containers. (preferrable)
+#Auto-Healing
+#Load Balancing
+#Platform Independent(cloud/virtual/physical)
+#Fault Tolerance (Node/POD failure)
+Kubernetes keep monitoring Node/POD against its failure. It creates new POD in case of failure.
+#Rollback(going back to previous version)
+#Health Monitoring of Containers
+#Batch Execution(one-time, sequential, parallel)
+#Kubernetes scripts are written in YAML/JSON --> k/a Menifest.
+#Kubernetes written in GoLang.
+
+
+Kubernetes                           vs                                                 Docker Swarm
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+#Installation and Configuration:
+ Completed and time-consuming                                              		        Fast and Easy
+#Supports:
+ k8s can work with almost all container types like Rocket,                              Works with Docker only.
+ Docker, Container-D.
+#GUI:
+ GUI Available                                                                          GUI not available
+#Data Volumes:
+ Only shared with containers in same POD                                                Can be shared with any other container.
+ Kubernetes control containers through POD only.
+#Updates & Rollback:
+ Process scheduling to maintain services while updating                                 Progressive updates & services health monitoring throughout the update.
+#Autoscalaing:
+ Supports vertical & horizontal autoscaling                                             No support of Autoscalaing	
+#Logging and Monitoring:
+ In-built tool present for monitoring                                                   uses 3rd party tools like Splunk.
+
+Note: We have another tool in the market which is Apache Marathon, although it's market share is quite low.
+
+Architecture of K8s
+---------------------------
+#Kubernetes cluster comprises master and slaves/nodes/workers.
+#It follows master-slave/client-server architecture.
+#Types of cluster K8s supports:
+	1.one master- one nodes/workers
+	2.one master - multiple nodes/workers
+	3.multiple masters - multiple nodes/workers
+#Master controls or manages nodes.
+#Inside Node we create any number of PODs.
+#Kubernetes never reads containers or works on containers but POD which is the smallest unit in Kubernetes.
+#Containers are availabile inside POD only.
+#Generally we take one container in one POD, although its possible to take multiples.
+#Application runs inside containers.
+#Cluster --> Node --> POD --> Container --> Microservice
+#K8s cluster generally follows master-slave architecture which comprises master and nodes.
+#Each node may contain single or multiple nodes.
+#Each node may contain one or more containers with running application/micro-service.
+ 
+
+ 
+
+
+
+	
