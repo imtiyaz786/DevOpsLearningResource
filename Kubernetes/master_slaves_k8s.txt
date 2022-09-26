@@ -1,0 +1,74 @@
+Set up Kubernetes Master & Node on AWS
+--------------------------------------
+Login to AWS account -> Launch 3 Instances
+-> ubuntu 16.04 (t2 medium)
+Master must have 2 vCPU and 4 GB RAM
+-> Now, using puttygen, create private key and save.
+-> Access all the 3 instances (1 Master, 2 Nodes) using putty.
+
+*******************COMMANDS FOR DEMO*******************
+
+//Commands common for Master & Node
+$sudo su
+$apt-get update
+
+//Now install https package
+$apt-get install apt-transport-https //This https is needed for intra cluster Commn(particularly from control plane to individual pods)
+
+//Now install docker on all 3 instances.
+$apt install docker.io -y
+
+//To check whether docker is installed or not
+$docker --version
+
+$systemctl start docker
+$systemctl enable docker
+
+//Setup open GPG key. This is required for intra cluster communication. It will be 
+  added to source key on this node i.e. when k8s sends signed info to our host,
+  it is going to accept those information because this open GPG key is present in
+  the source key.
+$sudo curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add 
+
+//Edit source list file(apt-get install nano)
+$nano /etc/apt/sources.list.d/kubernetes.list
+$deb http://apt.kubernetes.io/ kubernetes-xenial main
+//exit from nano -> ctrl+x -> caps + Y -> enter
+
+$apt-get update  //install all packages or we can say unzip files
+$apt-get install -y kubelet kubeadm kubectl kubernetes-cni //
+
+_______________________________________________________________________________
+BOOTSTRAPPING THE MASTER NODE (IN MASTER)
+
+//To initialize K8s cluser
+$kubeadm init
+ 
+You will get one long command started from "kubeadm join 172.31.6.165.6443............."
+COPY THE COMMAND TO RUN IN NODES & SAVE IN NOTEPAD
+
+//Below three commands will apprea while doing kubeadm init:
+//Create both .kubeand its parent directories(-p)
+1.mkdir -p $HOME/.kube 
+
+//copy configuration to kube directory(in .config file)
+2.cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+
+//Provide user permissions to .config file
+3.chown $(id -u):$(id -g) $HOME/.kube/config
+
+//Deploy flannel node network for its repository path flannel is going to place a binary in each node.
+kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/k8s-manifests/kube-flannel-rbac.yml
+
+
+
+CONFIGURE WORKER NODES (IN NODES)
+__________________________________
+
+COPY LONG CODE PROVIDED MY MASTER IN NODE NOW LIKE CODE GIVEN BELOW
+kubeadm join 172.31.37.39:6443 --token wryo3a.gbd3hqv9tv94vrf3 --discovery-token-ca-cert-hash sha256:c29e830eb64fd5da9ed4eef5c85ca65845035548e471813dd0033408102b4a93
+
+GO TO MASTER AND RUN THIS COMMAND
+kubectl get nodes
+**********************END************************************
